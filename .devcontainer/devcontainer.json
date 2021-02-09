@@ -1,0 +1,55 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.155.1/containers/docker-existing-dockerfile
+{
+	"name": "dc-sandbox",
+	"build": {
+		// Sets the run context to one level up instead of the .devcontainer folder.
+		"context": "..",
+		// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
+		"dockerfile": "../docker/develop.Dockerfile",
+		"args": {
+			// docker本体がプロキシ環境外の場合はRecovery Containerでプロキシ設定を削除してください
+			// 削除後>Remote-Containers: Reopen in Containerを実行してください
+			"HTTP_PROXY": "http://example.org:8080",
+			"HTTPS_PROXY": "http://example.org:8080",
+			"http_proxy": "http://example.org:8080",
+			"https_proxy": "http://example.org:8080",
+			"no_proxy:": "127.0.0.1,localhost"
+		}
+	},
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/bash",
+		"python.linting.enabled": true,
+		"python.pythonPath": "/usr/bin/python3",
+		"python.linting.flake8Enabled": false,
+		"python.languageServer": "Pylance",
+		"python.analysis.typeCheckingMode": "basic",
+		"python.formatting.provider": "black",
+		"editor.codeActionsOnSave": {
+			"source.organizeImports": true
+		},
+		"powermode.enabled": true,
+		"powermode.customExplosions": [],
+	},
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		// 英語読めない
+		"ms-ceintl.vscode-language-pack-ja",
+		// Python関連
+		"ms-python.python",
+		"ms-python.vscode-pylance",
+		"njpwerner.autodocstring",
+		// jupyter使わないんですか?
+		"ms-toolsai.jupyter",
+		// CSVファイル読みやすくする
+		"mechatroner.rainbow-csv",
+		// git関連
+		"donjayamanne.githistory",
+		"github.vscode-pull-request-github",
+		"mhutchie.git-graph",
+		// 楽しい
+		"hoovercj.vscode-power-mode"
+	],
+	// docker コンテナのログインユーザー指定すること
+	"remoteUser": "root"
+}
