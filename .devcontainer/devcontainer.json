@@ -51,5 +51,6 @@
 		"hoovercj.vscode-power-mode"
 	],
 	// docker コンテナのログインユーザー指定すること
-	"remoteUser": "root"
+	"remoteUser": "root",
+	"postCreateCommand": "sh .devcontainer/initialize.sh"
 }
