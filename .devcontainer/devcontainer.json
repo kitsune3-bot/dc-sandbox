@@ -10,11 +10,11 @@
 		"args": {
 			// docker本体がプロキシ環境外の場合はRecovery Containerでプロキシ設定を削除してください
 			// 削除後>Remote-Containers: Reopen in Containerを実行してください
-			"HTTP_PROXY": "http://example.org:8080",
-			"HTTPS_PROXY": "http://example.org:8080",
-			"http_proxy": "http://example.org:8080",
-			"https_proxy": "http://example.org:8080",
-			"no_proxy:": "127.0.0.1,localhost"
+			"HTTP_PROXY": "${localEnv:REMOTE_HTTP_PROXY}",
+			"HTTPS_PROXY": "${localEnv:REMOTE_HTTPS_PROXY}",
+			"http_proxy": "${localEnv:remote_http_proxy}",
+			"https_proxy": "${localEnv:remote_https_proxy}",
+			"no_proxy:": "${localEnv:remote_no_proxy}"
 		}
 	},
 	"settings": {
@@ -51,5 +51,6 @@
 		"hoovercj.vscode-power-mode"
 	],
 	// docker コンテナのログインユーザー指定すること
-	"remoteUser": "root"
+	"remoteUser": "root",
+	"postCreateCommand": "sh .devcontainer/initialize.sh"
 }
